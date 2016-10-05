@@ -3,15 +3,14 @@
 ### Arduino --[serial]--> Raspberry Pi --[web socket]--> Webserver (can also be on Pi) --[web socket]--> HTML5 Webpages
 
 This repo contains a basic framework which allows JSON encoded data to be transfered from an Arduino (or other serial
-capable dev board) to locally hosted website (on a Raspberry Pi). It uses web sockets to provide realtime updates. This
- code was required as part of a larger project whcih can be found here: http://thing.farm/ocean-scan.
+capable dev board) to locally hosted website (on a Raspberry Pi). It uses web sockets to provide realtime updates.
 
 ## Basic Setup
 First of all I am going to assume you have a Raspberry Pi 3 with Raspbian installed and setup to connect to the internet.
 Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the
 latest model.
 
-First job is to make sure the file system is expanded to use the full capacity of the SD Card
+First job is to make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step.
 * Open terminal and type “raspi-config”.
 * Choose the “expand Filesystem” option and reboot the Pi
 
@@ -29,31 +28,19 @@ Make a new directory for the web server and move into it
 * cd ~/www
 
 Download the project code from github
-* git clone https://github.com/jkittley/ocean-scan.git
+* git clone https://github.com/jkittley/gameconsole.git
 
 Move into the directory
-* cd ocean-scan
+* cd gameconsole
 
 Install all the python requirements
 * sudo pip3 install -r requirements.txt
 
-Copy all the files from the from useful_tools to the raspberry pi desktop
-* sudo cp useful_tools/*.sh ~/Desktop
-
-You must then make the usefull tools executable
-* sudo chmod +x ~/Desktop/*.sh
-
 That's it, now we can launch the services.
-
-You can either run:
-* python3 serialmonitor.py --prod &
 * sudo python3 webserver.py —prod
 
-or double click on the new icons on the desktop and choose execute in terminal
-
 Once the server is up and running you can open the browser and go to localhost to see the website or from a remote
-machine you can enter the Raspberry Pi's IP address. The IP address can be discovered by double clicking on the
-"whats_my_ip" useful tool now on the desktop  
+machine you can enter the Raspberry Pi's IP address.
 
 
 ## Access Point Setup (Raspberry Pi 3 Only)
