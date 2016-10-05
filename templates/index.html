@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block script %}
+{% endblock %}
+
+{% block style %}
+<style>
+    .option {
+        background-size: cover;
+        min-height: 200px;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12"><span class="lead">Game Console - part of the Gamepad tutorial</span></div>
+        </div>
+        <hr/>
+        <div class="row">
+
+            {% for item in menu %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading"><a href="{{ item.url }}">{{ item.name }}</a></div>
+                    <a href="{{ item.url }}">
+                    <div class="panel-body option" style="background-image: url(/static/img/vis_thumbs/{{ item.img }})">
+                    </div>
+                        </a>
+                    <img src=""/>
+                    <div class="panel-footer"><a href="{{ item.url }}" class="btn btn-block btn-primary">Open: {{ item.name }}</a></div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block settings_body %}
+    To open visualisation settings, double click when viewing any of the visualisations.
+{% endblock %}
