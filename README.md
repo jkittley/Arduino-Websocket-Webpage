@@ -80,8 +80,10 @@ iface wlan0 inet manual
 Restart dhcpcd
 * sudo service dhcpcd restart
 
-Configure HostAPD
+Configure HostAPD by creating a new config file.
 * sudo nano /etc/hostapd/hostapd.conf
+
+Don't forget you can open this page in the Pi's browser and copy-paste :)
 
 ```
 # This is the name of the WiFi interface we configured above.
@@ -91,7 +93,7 @@ interface=wlan0
 driver=nl80211
 
 # This is the name of the network.
-ssid=Ocean-Scan
+ssid=GameConsole
 
 # Use the 2.4GHz band.
 hw_mode=g
@@ -130,15 +132,21 @@ wpa_passphrase=raspberry
 rsn_pairwise=CCMP
 ```
 
-We can check if it's working at this stage by running sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf.
+Before you save, you can edit the following
+* ssid - The name of your wireless network
+* wpa_passphrase - The password
+
+
+We can check if it's working at this stage by running "sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf".
 If it's all gone well thus far, you should be able to see to the network Pi3-AP! If you try connecting to it,
 you will see some output from the Pi, but you won't receive and IP address until we set up dnsmasq in the next step.
 Use Ctrl+C to stop it.
 
 We also need to tell hostapd where to look for the config file when it starts up on boot
 * sudo nano /etc/default/hostapd
-* find the line #DAEMON_CONF=""
-* replace it with DAEMON_CONF="/etc/hostapd/hostapd.conf"
+* find the line ```#DAEMON_CONF=""```
+* replace it with ```DAEMON_CONF="/etc/hostapd/hostapd.conf"```
+* Exit and save
 
 Configure DNSMASQ
 
@@ -176,4 +184,8 @@ Start the services
 Finally reboot the Pi
 * sudo reboot
 
-Now you should be able to connect to the Pi via WiFi. Navigate to http://ocean.scan in the browser and you should see the website.
+Start the web server running
+* Open terminal and type:
+* sudo python3 ~/www/gameconsole/webserver.py —prod
+
+Now you should be able to connect to the Pi via WiFi. Navigate to http://game.console in the browser and you should see the website.

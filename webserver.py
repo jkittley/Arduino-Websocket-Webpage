@@ -29,6 +29,7 @@ print (socketio)
 def index():
     menu = [
         {"name": "Pong", "url": "/pong", "img": "pong.png" },
+        {"name": "Snake", "url": "/snake", "img": "snake.png" },
     ]
     return render_template('index.html', menu=menu)
 
@@ -37,6 +38,12 @@ def index():
 @app.route('/pong')
 def play_pong():
     return render_template('pong.html')
+
+# Ski Game
+@app.route('/snake')
+def play_snake():
+    return render_template('snake.html')
+
 
 
 # ------------------------------------------------------------------------------
