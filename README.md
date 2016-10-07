@@ -74,8 +74,8 @@ Open the terminal and move to the 'www' directory we made earlier.
 * ```cd ~/www/```
 
 Clone the project code from github and step into the directory
-* ```git clone https://github.com/jkittley/gamepad.git```
-* ```cd gamepad```
+* ```git clone https://github.com/jkittley/Arduino-Serial-Websocket.git```
+* ```cd Arduino-Serial-Websocket```
 
 Install all the library requirements
 * ```sudo pip3 install -r requirements.txt```
@@ -97,7 +97,7 @@ Close the serial monitor and run the web server
 * ```sudo ~/www/Arduino-Websocket-Webpage/webserver.py```
 
 Open a new terminal window and run the serialmonitor.py script
-* ```sudo ~/www/gamepad/serialmonitor.py```
+* ```sudo ~/www/Arduino-Serial-Websocket/serialmonitor.py```
 * Select the Arduino's port from the list (usually /dev/ttyACM0) and hit enter.
 
 You should now see that the serial monitor script connects to the web socket server by the webserver.py script and that it monitors the serial port and reads the Arduino.
@@ -123,12 +123,12 @@ Note: SG90 wire colours may be different to those shown in the diagram. Commonly
 
 Next make sure serialmonitor.py is not running, Ctrl-C to terminate.
 
-Open the file: ```~/www/gamepad/arduino/pong/pong.ino``` in the Arduino IDE and upload it.
+Open the file: ```~/www/Arduino-Serial-Websocket/arduino/pong/pong.ino``` in the Arduino IDE and upload it.
 
 Now restart the serialmonitor.py
-* ```sudo ~/www/gamepad/serialmonitor.py```
+* ```sudo ~/www/Arduino-Serial-Websocket/serialmonitor.py```
 
-Make sure the webserver is still running and open the browser.
+Make sure the web server is still running and open the browser.
 
 Select 'pong' from the main menu and see what happens. You should be able to control the left paddle by moving your hand up and down front of the range sensor (approx 5 to 10cm). When the ball goes out of play the servo should twitch!
 
