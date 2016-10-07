@@ -1,6 +1,6 @@
 # Displaying live data from an arduino in a web browser
 
-In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an outreach project for Exeter University. We needed to present live data streams on a large public display. We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
+In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an [outreach project](#footnotes) for Exeter University. We needed to present live data streams on a large public display. We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
 
 To make things simpler the tutorial is divide into the following section:
 
@@ -246,5 +246,7 @@ Now you should be able to connect to the Pi via WiFi. Navigate to http://game.co
 
 
 # Footnotes
+
+This tutorials origin. Dr Anne Le Brocq, a glaciologist at Exeter University, wanted a way to explain the seabed scanning technologies used in Antarctica to school children. Together we conceived and built the Ocean Scan project. Click to watch the video on Youtube
 
 [![Ocean-Scan Project](http://img.youtube.com/vi/Y7ZZm3ZpZCg/0.jpg)](http://www.youtube.com/watch?v=Y7ZZm3ZpZCg)
