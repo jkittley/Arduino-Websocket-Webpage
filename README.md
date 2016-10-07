@@ -7,7 +7,8 @@ To make things simpler the tutorial is divide into the following section:
 1. [Setup the Pi](#basic-raspberry-pi-setup)
 2. [Flask web server setup](#flask-web-server-setup)
 3. [Connect the Arduino to the web socket](#connect-the-arduino-to-the-web-socket)
-4. [Turn the Pi into an Access Point Setup (Optional)](#access-point-setup)
+4. [Let's play pong](#lets-play-pong)
+5. [Turn the Pi into an Access Point Setup (Optional)](#access-point-setup)
 
 Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
@@ -96,6 +97,18 @@ Now switch to the web server terminal window and you should see the same data st
 
 Finally open the web browser and open the test data page. You should see the test data stream by. Also there is a button which should send a message back to the Arduino which will toggle the LED status.
 
+
+# Let's play pong
+Now we have a working system, let's do something fun. Tennis anyone?
+
+* HC-SR04 Ultrasound Range Finder
+* SG90 5v Servo
+* Some wire
+
+Connect the components as follows: 
+![Pong Arduino setup](https://raw.githubusercontent.com/jkittley/gameconsole/master/readme/pong_arduino_setup.png)
+
+Note: SG90 wire colours may be different to those shown in the diagram. Commonly: Orange=signal, Red=Vcc and Brown=Gnd. See http://www.fatlion.com/sailplanes/servos.html for more color schemes.
 
 # Access Point Setup
 In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available, as such push the processing to the browser i.e. using javascript to do the heavy lifting, is a good idea.
@@ -247,6 +260,6 @@ Now you should be able to connect to the Pi via WiFi. Navigate to http://game.co
 
 # Footnotes
 
-This tutorials origin. Dr Anne Le Brocq, a glaciologist at Exeter University, wanted a way to explain the seabed scanning technologies used in Antarctica to school children. Together we conceived and built the Ocean Scan project. Click to watch the video on Youtube
+This tutorials origin. Dr Anne Le Brocq, a glaciologist at Exeter University, wanted a way to explain the seabed scanning technologies used in Antarctica to school children. Together we conceived and built the Ocean Scan project. Click to watch the video on Youtube.
 
 [![Ocean-Scan Project](http://img.youtube.com/vi/Y7ZZm3ZpZCg/0.jpg)](http://www.youtube.com/watch?v=Y7ZZm3ZpZCg)
