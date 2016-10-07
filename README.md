@@ -3,11 +3,11 @@
 In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an outreach project for Exeter University. We needed to present live data streams on a large public display. We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
 
 To make things simpler the tutorial is divide into the following section:
-1. Setup the Pi
-2. Flask web server setup
-3. Connect the Arduino to the web socket
-4. Turn the Pi into an Access Point Setup (Optional)
-5. Coming soon - Using Gunicorn and NGINX
+1. Setup the Pi 
+2. Flask web server setup 
+3. Connect the Arduino to the web socket 
+4. Turn the Pi into an Access Point Setup (Optional) 
+5. Coming soon - Using Gunicorn and NGINX 
 
 Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
