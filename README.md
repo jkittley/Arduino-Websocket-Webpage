@@ -1,8 +1,10 @@
 # Displaying live data from an arduino in a web browser
 
-In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an [outreach project](#footnotes) for Exeter University. We needed to present live data streams on a large public display. We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
+In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an [outreach project](#footnotes) for Exeter University. We needed to present live data streams on a large public display.
 
-To make things simpler the tutorial is divide into the following section:
+We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
+
+## To make things simpler the tutorial is divide into the following section:
 
 1. [Setup the Pi](#basic-raspberry-pi-setup)
 2. [Flask web server setup](#flask-web-server-setup)
@@ -10,11 +12,17 @@ To make things simpler the tutorial is divide into the following section:
 4. [Let's play pong](#lets-play-pong)
 5. [Turn the Pi into an Access Point Setup (Optional)](#access-point-setup)
 
-Things you will need
+## Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
 * An Arduino, any model should do, we used Nanos and Unos
 * USB cable to connect the Pi and the Arduino
 * Power supplies
+
+## End product
+The purpose of this code and the tutorial is to give you a framework / skill set on which you can build your own project. It is not a finished article and as such elements such as error checking have been omitted in order to make the code more readable and easier to understand. This is what you will build:
+
+[![Example Use](http://img.youtube.com/vi/PEcfkao6sfE/0.jpg)](http://www.youtube.com/watch?v=PEcfkao6sfE)
+
 
 
 # Basic Raspberry Pi Setup

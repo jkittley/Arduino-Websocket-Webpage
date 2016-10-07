@@ -25,7 +25,7 @@
             {% for item in menu %}
             <div class="col-md-4">
                 <div class="panel panel-default">
-                  <div class="panel-heading"><a href="{{ item.url }}">{{ item.name }}</a></div>
+                  <div class="panel-heading"><a href="{{ item.url }}"><span class="lead">{{ item.name }}</span></a></div>
                     <a href="{{ item.url }}">
                     <div class="panel-body option" style="background-image: url(/static/img/vis_thumbs/{{ item.img }})">
                     </div>
