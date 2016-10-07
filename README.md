@@ -1,57 +1,113 @@
-# Controlling a HTML5 game with a home made Arduino Gamepad
+# Displaying live data from an arduino in a web browser
 
-### Arduino --[serial]--> Raspberry Pi --[web socket]--> Webserver (can also be on Pi) --[web socket]--> HTML5 Webpages
+In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an outreach project for Exeter University. We needed to present live data streams on a large public display. We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
 
-This repo contains a basic framework which allows JSON encoded data to be transfered from an Arduino (or other serial
-capable dev board) to locally hosted website (on a Raspberry Pi). It uses web sockets to provide realtime updates.
+To make things simpler the tutorial is divide into the following section:
+1. Setup the Pi
+2. Flask web server setup
+3. Connect the Arduino to the web socket
+4. Turn the Pi into an Access Point Setup (Optional)
+5. Coming soon - Using Gunicorn and NGINX
 
-## Basic Setup
-First of all I am going to assume you have a Raspberry Pi 3 with Raspbian installed and setup to connect to the internet.
-Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the
-latest model.
+Things you will need
+* Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
+* An Arduino, any model should do, we used Nanos and Unos
+* USB cable to connect the Pi and the Arduino
+* Power supplies
 
-First job is to make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step.
+
+## Basic Raspberry Pi Setup
+First of all install the latest version Raspbian (howto: https://www.raspberrypi.org/help/videos/) and connect it to the internet.
+
+If you choose to use a different OS the please make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step, it has been done already for you.
 * Open terminal and type “raspi-config”.
 * Choose the “expand Filesystem” option and reboot the Pi
 
-Launch command line and run the following to insure the system is up-to-date
-* sudo apt-get update
+Next let make sure the system is up to date.
+* Launch the command line / terminal and run the following
+* ```sudo apt-get update```
 
-Next make sure you have the Epiphany browser installed
-* sudo apt-get install epiphany-browser
 
+## Flask web server setup
 Check you have Python 3 and Pip installed
-* sudo apt-get install python3-pip
+* ```sudo apt-get install python3-pip```
 
 Make a new directory for the web server and move into it
-* mkdir ~/www
-* cd ~/www
+* ```mkdir ~/www```
+* ```cd ~/www```
 
-Download the project code from github
-* git clone https://github.com/jkittley/gameconsole.git
+Clone the project code from github and step into the directory
+* ```git clone https://github.com/jkittley/gameconsole.git```
+* ```cd gameconsole```
 
-Move into the directory
-* cd gameconsole
+Install all the library requirements
+* ```sudo pip3 install -r requirements.txt```
 
-Install all the python requirements
-* sudo pip3 install -r requirements.txt
+That's it, now we can test the web server.
+* ```sudo python3 webserver.py --prod```
 
-That's it, now we can launch the services.
-* sudo python3 webserver.py —prod
+You should see something like this:
+```
+<flask_socketio.SocketIO object at 0x102f610f0>
+ * Restarting with stat
+<flask_socketio.SocketIO object at 0x10388b128>
+ * Debugger is active!
+ * Debugger pin code: 661-779-075
+(10072) wsgi starting up on http://0.0.0.0:80
+```
 
-Once the server is up and running you can open the browser and go to localhost to see the website or from a remote
-machine you can enter the Raspberry Pi's IP address.
+Now the server is up and running you can open the web browser, type ```localhost``` in the address bar and hit enter. You should see the webpage being served.
 
 
-## Access Point Setup (Raspberry Pi 3 Only)
-If you want people to be able to access the hosted web pages via WiFi you can setup the Pi3 to act as a local Access Point.
-This section was modified from https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/
+## Connect the Arduino to the web socket
+Open the terminal and move to the 'www' directory we made earlier.
+* cd ~/www/
 
-First install the two packages required
-* sudo apt-get install dnsmasq hostapd
+Clone the project code from github and step into the directory
+* ```git clone https://github.com/jkittley/gamepad.git```
+* ```cd gamepad```
+
+Install all the library requirements
+* ```sudo pip3 install -r requirements.txt```
+
+Now to setup the Arduino. If you don't already have the IDE installed on the Pi then run:
+* ```sudo apt-get install arduino```
+
+Open the IDE by either:
+1. Use the Raspberry Pi menu system > Programming > Arduino IDE
+2. Type ```arduino &``` in the terminal. The & is important, it tells the terminal to open in the background.
+
+Connect the Arduino to the Pi via a USB cable and make sure you have the port and board type set correctly.
+
+Open the file: ```arduino/testconnection/testconnection.ino``` in the Arduino IDE and upload it to the Arduino.
+
+Open the serial monitor to make sure it is outputting information periodically e.g. { test: 39 }.
+
+Close the serial monitor and run the web server
+* ```sudo ~/www/gameconsole/webserver.py```
+
+Open a new terminal window and run the serialmonitor.py script
+* ```sudo ~/www/gamepad/serialmonitor.py```
+* Select the Arduino's port from the list (usually /dev/ttyACM0) and hit enter.
+
+You should now see that the serial monitor script connects to the web socket server by the webserver.py script and that it monitors the serial port and reads the Arduino.
+
+Now switch to the webserver terminal window and you should see the same data streaming in e.g. from_serial_monitor: { test: 39 }.
+
+Finally open the web browser and open the test data page.
+
+
+
+## Access Point Setup
+In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available, as such push the processing to the browser i.e. using javascript to do the heavy lifting, is a good idea.
+
+First, get your Pi connected to the internet using Ethernet. It will make your life much easier later. We need to use the Wifi for the access point.
+
+Install the two key packages required
+* ```sudo apt-get install dnsmasq hostapd```
 
 Now we need to set a static IP address for wlan0
-* sudo nano /etc/dhcpcd.conf
+* ```sudo nano /etc/dhcpcd.conf```
 * Add the following to the bottom of the file:
 
 ```
@@ -60,7 +116,7 @@ interface wlan0
 ```
 
 Next we need to prevent wpa_supplicant from running and interfering with setting up wlan0 in access point mode.
-* sudo nano /etc/network/interfaces
+* ```sudo nano /etc/network/interfaces```
 * Comment out the line that looks like:
 
 ```
@@ -78,12 +134,12 @@ iface wlan0 inet manual
 ```
 
 Restart dhcpcd
-* sudo service dhcpcd restart
+* ```sudo service dhcpcd restart```
 
 Configure HostAPD by creating a new config file.
-* sudo nano /etc/hostapd/hostapd.conf
+* ```sudo nano /etc/hostapd/hostapd.conf```
 
-Don't forget you can open this page in the Pi's browser and copy-paste :)
+Add the following to the new file. Don't forget you can open this page in the Pi's browser and copy-paste :)
 
 ```
 # This is the name of the WiFi interface we configured above.
@@ -137,10 +193,11 @@ Before you save, you can edit the following
 * wpa_passphrase - The password
 
 
-We can check if it's working at this stage by running "sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf".
-If it's all gone well thus far, you should be able to see to the network Pi3-AP! If you try connecting to it,
-you will see some output from the Pi, but you won't receive and IP address until we set up dnsmasq in the next step.
-Use Ctrl+C to stop it.
+We can check if it's working by running
+# ```sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf```
+
+If it's all gone well thus far, you should be able to see to the network with SSID you chose in the list of available networks on any device nearby. However if you try connecting to it, you will see some output from the Pi, but it wont work as you might expect.
+* Use Ctrl+C to stop it.
 
 We also need to tell hostapd where to look for the config file when it starts up on boot
 * sudo nano /etc/default/hostapd
@@ -148,13 +205,11 @@ We also need to tell hostapd where to look for the config file when it starts up
 * replace it with ```DAEMON_CONF="/etc/hostapd/hostapd.conf"```
 * Exit and save
 
-Configure DNSMASQ
+Next we will setup dnsmasq. Move the config file out of the way
+* ```sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig```
 
-First move the config file out of the way
-* sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig  
-
-Now make a new one
-* sudo nano /etc/dnsmasq.conf
+Now make a new config file
+* ```sudo nano /etc/dnsmasq.conf```
 * paste the following into the file
 
 ```
@@ -172,20 +227,20 @@ dhcp-range=172.24.1.50,172.24.1.150,12h
 ```
 
 One of the last things that we need to do before we send traffic anywhere is to enable packet forwarding.
-* sudo nano /etc/sysctl.conf
+* ```sudo nano /etc/sysctl.conf```
 * remove the # from the beginning of the line containing net.ipv4.ip_forward=1
 * save and reboot it:
-* sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+* ```sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"```
 
 Start the services
-* sudo service hostapd start  
-* sudo service dnsmasq start
+* ```sudo service hostapd start```
+* ```sudo service dnsmasq start```
 
 Finally reboot the Pi
-* sudo reboot
+* ```sudo reboot```
 
 Start the web server running
 * Open terminal and type:
-* sudo python3 ~/www/gameconsole/webserver.py —prod
+* ```sudo python3 ~/www/gameconsole/webserver.py —prod```
 
 Now you should be able to connect to the Pi via WiFi. Navigate to http://game.console in the browser and you should see the website.

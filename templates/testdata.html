@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block script %}
+    <script>
+    var led_status = 1;
+    $(document).ready(function() {
+
+      // Web socket setup
+      sm = new SocketManager(function (newdata) {
+        if (newdata.data.test !== undefined) $('#output').prepend('test: '+newdata.data.test+"<BR>");
+          console.log(newdata);
+      });
+
+      $('#button_blink').click(function () {
+        sm.emit({ action: led_status });
+        led_status = (led_status==1) ? 2 : 1;
+        if (led_status==2) {
+            $('#button_blink span').html('OFF');
+            bootbox.alert("Led should be on");
+        } else {
+            $('#button_blink span').html('ON');
+            bootbox.alert("Led should be off");
+        }
+      });
+
+      sm.connect();
+    });
+</script>
+{% endblock %}
+
+
+
+{% block style %}
+    <style>
+     html, body {
+       width: 100%;
+       height: 80%;
+       background-color: #000;
+     }
+      #output {
+        width: 100%;
+        height: 80%;
+        color: white;
+        padding: 20px;
+      }
+      #button_blink {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="output">Start</div>
+<button id="button_blink" type="button">Turn Arduino LED - <span>ON</span></button>
+{% endblock %}
+
+
+<!DOCTYPE html>
