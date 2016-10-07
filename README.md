@@ -47,8 +47,8 @@ Make a new directory for the web server and move into it
 * ```cd ~/www```
 
 Clone the project code from github and step into the directory
-* ```git clone https://github.com/jkittley/gameconsole.git```
-* ```cd gameconsole```
+* ```git clone https://github.com/jkittley/Arduino-Websocket-Webpage.git```
+* ```cd Arduino-Websocket-Webpage```
 
 Install all the library requirements
 * ```sudo pip3 install -r requirements.txt```
@@ -94,7 +94,7 @@ Open the file: ```arduino/testconnection/testconnection.ino``` in the Arduino ID
 Open the serial monitor to make sure it is outputting information periodically e.g. { test: 39 }.
 
 Close the serial monitor and run the web server
-* ```sudo ~/www/gameconsole/webserver.py```
+* ```sudo ~/www/Arduino-Websocket-Webpage/webserver.py```
 
 Open a new terminal window and run the serialmonitor.py script
 * ```sudo ~/www/gamepad/serialmonitor.py```
@@ -117,7 +117,7 @@ You will need:
 
 First connect the components as follows:
 
-![Pong Arduino setup](https://raw.githubusercontent.com/jkittley/gameconsole/master/readme/pong_arduino_setup.png)
+![Pong Arduino setup](https://raw.githubusercontent.com/jkittley/Arduino-Websocket-Webpage/master/readme/pong_arduino_setup.png)
 
 Note: SG90 wire colours may be different to those shown in the diagram. Commonly: Orange=signal, Red=Vcc and Brown=Gnd. See http://www.fatlion.com/sailplanes/servos.html for more color schemes.
 
@@ -193,7 +193,7 @@ interface=wlan0
 driver=nl80211
 
 # This is the name of the network.
-ssid=GameConsole
+ssid=Arduino-Websocket-Webpage
 
 # Use the 2.4GHz band.
 hw_mode=g
@@ -285,7 +285,7 @@ Finally reboot the Pi
 
 Start the web server running
 * Open terminal and type:
-* ```sudo python3 ~/www/gameconsole/webserver.py —prod```
+* ```sudo python3 ~/www/Arduino-Websocket-Webpage/webserver.py —prod```
 
 Now you should be able to connect to the Pi via WiFi. Navigate to http://game.console in the browser and you should see the website.
 
