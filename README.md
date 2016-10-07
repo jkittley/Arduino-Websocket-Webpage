@@ -4,10 +4,12 @@ In this tutorial we show how a Raspberry Pi serving webpages can present live da
 
 To make things simpler the tutorial is divide into the following section:
 1. Setup the Pi
+
 2. Flask web server setup
+
 3. Connect the Arduino to the web socket
+
 4. Turn the Pi into an Access Point Setup (Optional)
-5. Coming soon - Using Gunicorn and NGINX
 
 Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
@@ -61,7 +63,7 @@ Now the server is up and running you can open the web browser, type ```localhost
 
 ## Connect the Arduino to the web socket
 Open the terminal and move to the 'www' directory we made earlier.
-* cd ~/www/
+* ```cd ~/www/```
 
 Clone the project code from github and step into the directory
 * ```git clone https://github.com/jkittley/gamepad.git```
@@ -92,10 +94,9 @@ Open a new terminal window and run the serialmonitor.py script
 
 You should now see that the serial monitor script connects to the web socket server by the webserver.py script and that it monitors the serial port and reads the Arduino.
 
-Now switch to the webserver terminal window and you should see the same data streaming in e.g. from_serial_monitor: { test: 39 }.
+Now switch to the web server terminal window and you should see the same data streaming in e.g. from_serial_monitor: { test: 39 }.
 
-Finally open the web browser and open the test data page.
-
+Finally open the web browser and open the test data page. You should see the test data stream by. Also there is a button which should send a message back to the Arduino which will toggle the LED status.
 
 
 ## Access Point Setup
