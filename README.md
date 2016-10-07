@@ -101,14 +101,37 @@ Finally open the web browser and open the test data page. You should see the tes
 # Let's play pong
 Now we have a working system, let's do something fun. Tennis anyone?
 
+You will need:
 * HC-SR04 Ultrasound Range Finder
 * SG90 5v Servo
 * Some wire
 
-Connect the components as follows: 
+First connect the components as follows:
+
 ![Pong Arduino setup](https://raw.githubusercontent.com/jkittley/gameconsole/master/readme/pong_arduino_setup.png)
 
 Note: SG90 wire colours may be different to those shown in the diagram. Commonly: Orange=signal, Red=Vcc and Brown=Gnd. See http://www.fatlion.com/sailplanes/servos.html for more color schemes.
+
+Next make sure serialmonitor.py is not running, Ctrl-C to terminate.
+
+Open the file: ```arduino/pong/pong.ino``` in the Arduino IDE and upload it.
+
+Now restart the serialmonitor.py
+* ```sudo ~/www/gamepad/serialmonitor.py```
+
+Make sure the webserver is still running and open the browser.
+
+Select 'pong' from the main menu and see what happens. You should be able to control the left paddle by moving your hand up and down front of the range sensor (approx 5 to 10cm). When the ball goes out of play the servo should twitch!
+
+## Next
+
+You may have noticed that there is another game, Snake. This game expects  to control the direction of the snake. Why not try making your own Arduino script which outputs
+
+* { "keystroke": 37 } for 'left'
+* { "keystroke": 38 } for 'up'
+* { "keystroke": 39 } for 'right'
+* { "keystroke": 40 } for 'down'
+
 
 # Access Point Setup
 In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available, as such push the processing to the browser i.e. using javascript to do the heavy lifting, is a good idea.
