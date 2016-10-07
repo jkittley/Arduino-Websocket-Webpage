@@ -19,7 +19,8 @@ We began with the following observations: Arduino's are excellent for quick hard
 * Power supplies
 
 ## End product
-The purpose of this code and the tutorial is to give you a framework / skill set on which you can build your own project. It is not a finished article and as such elements such as error checking have been omitted in order to make the code more readable and easier to understand. This is what you will build:
+The purpose of this code and the tutorial is to give you a framework / skill set on which you can build your own project. It is not a finished article and as such elements such as error checking have been omitted in order to make the code more readable and easier to understand. This is what you will build (Click to watch):
+
 
 [![Example Use](http://img.youtube.com/vi/PEcfkao6sfE/0.jpg)](http://www.youtube.com/watch?v=PEcfkao6sfE)
 
