@@ -5,13 +5,9 @@ In this tutorial we show how a Raspberry Pi serving webpages can present live da
 To make things simpler the tutorial is divide into the following section:
 
 1. Setup the Pi
-
 2. Flask web server setup
-
 3. Connect the Arduino to the web socket
-
 4. Turn the Pi into an Access Point Setup (Optional)
-
 
 Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
