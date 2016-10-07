@@ -16,7 +16,7 @@ Things you will need
 * Power supplies
 
 
-## Basic Raspberry Pi Setup
+# Basic Raspberry Pi Setup
 First of all install the latest version Raspbian (howto: https://www.raspberrypi.org/help/videos/) and connect it to the internet.
 
 If you choose to use a different OS the please make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step, it has been done already for you.
@@ -28,7 +28,7 @@ Next let make sure the system is up to date.
 * ```sudo apt-get update```
 
 
-## Flask web server setup
+# Flask web server setup
 Check you have Python 3 and Pip installed
 * ```sudo apt-get install python3-pip```
 
@@ -59,7 +59,7 @@ You should see something like this:
 Now the server is up and running you can open the web browser, type ```localhost``` in the address bar and hit enter. You should see the webpage being served.
 
 
-## Connect the Arduino to the web socket
+# Connect the Arduino to the web socket
 Open the terminal and move to the 'www' directory we made earlier.
 * ```cd ~/www/```
 
@@ -97,7 +97,7 @@ Now switch to the web server terminal window and you should see the same data st
 Finally open the web browser and open the test data page. You should see the test data stream by. Also there is a button which should send a message back to the Arduino which will toggle the LED status.
 
 
-## Access Point Setup
+# Access Point Setup
 In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available, as such push the processing to the browser i.e. using javascript to do the heavy lifting, is a good idea.
 
 First, get your Pi connected to the internet using Ethernet. It will make your life much easier later. We need to use the Wifi for the access point.
@@ -245,7 +245,6 @@ Start the web server running
 Now you should be able to connect to the Pi via WiFi. Navigate to http://game.console in the browser and you should see the website.
 
 
-## Footnotes
+# Footnotes
 
-
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![Ocean-Scan Project](http://img.youtube.com/vi/Y7ZZm3ZpZCg/0.jpg)](http://www.youtube.com/watch?v=Y7ZZm3ZpZCg)
