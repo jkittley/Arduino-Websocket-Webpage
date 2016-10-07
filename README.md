@@ -114,7 +114,7 @@ Note: SG90 wire colours may be different to those shown in the diagram. Commonly
 
 Next make sure serialmonitor.py is not running, Ctrl-C to terminate.
 
-Open the file: ```arduino/pong/pong.ino``` in the Arduino IDE and upload it.
+Open the file: ```~/www/gamepad/arduino/pong/pong.ino``` in the Arduino IDE and upload it.
 
 Now restart the serialmonitor.py
 * ```sudo ~/www/gamepad/serialmonitor.py```

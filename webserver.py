@@ -28,9 +28,9 @@ print (socketio)
 @app.route('/')
 def index():
     menu = [
-        {"name": "Test Data", "url": "/testdata", "img": "testdata.png" },
+        {"name": "Test Data", "url": "/testdata", "img": "test.jpg" },
         {"name": "Pong", "url": "/pong", "img": "pong.png" },
-        {"name": "Snake", "url": "/snake", "img": "snake.png" },
+        {"name": "Snake", "url": "/snake", "img": "snake.jpg" },
     ]
     return render_template('index.html', menu=menu)
 

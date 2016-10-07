@@ -229,13 +229,7 @@
 
     var snake = null;
     $(document).ready(function() {
-
-      $('#stage')
-        .width($('body').width()-50)
-        .height($('body').height()-50);
-
       snake = new Game.Snake('stage', {fps: 100, size: 4});
-
       // Web socket setup
       sm = new SocketManager(function (replyData) {
         console.log(replyData);
@@ -255,14 +249,57 @@
     body {
       text-align:center;
       font-family: helvetica;
+      background-color: black;
+      color: white;
     }
     canvas {
-      border: 2px solid rgb(151, 149, 149);
+      background-color: green;
+      border: 2px solid rgb(255, 255, 255);
+    }
+
+    .game-container {
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgb(162 , 196, 61);
+      width: 770px;
+    }
+    .frame-left, .frame-right, .frame-center {
+      float: left;
+    }
+    .frame-left, .frame-right {
+      width: 185px;
+      background-color: rgb(162 , 196, 61);
+      background-image: url(/static/img/snake/bg.png);
+    }
+    .frame-center {
+      background-color: rgb(162 , 196, 61);
+      background-image: url(/static/img/snake/bg.png);
+      padding-top: 40px;
+      padding-bottom: 35px;
+      width: 400px;
+    }
+    .thanks {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
     }
     </style>
 {% endblock %}
 
 {% block content %}
-<canvas id="stage" height="400" width="400"></canvas>
-<p class="text-center">Adapted from <a href="https://codepen.io/CaioPaiola/pen/GFpuK">https://codepen.io/CaioPaiola/pen/GFpuK</a></p>
+<div class="game-container">
+
+    <div class="frame-left text-right"><img src="/static/img/snake/left.png"/></div>
+
+    <div class="frame-center text-center">
+      <canvas id="stage" height="400" width="400"></canvas>
+    </div>
+
+      <div class="thanks">
+        <p class="text-center">Adapted from <a href="https://codepen.io/CaioPaiola/pen/GFpuK">https://codepen.io/CaioPaiola/pen/GFpuK</a></p>
+    </div>
+    <div class="frame-right text-left"><img src="/static/img/snake/right.png"/></div>
+
+</div>
 {% endblock %}
