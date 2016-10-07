@@ -4,10 +4,10 @@ In this tutorial we show how a Raspberry Pi serving webpages can present live da
 
 To make things simpler the tutorial is divide into the following section:
 
-1. Setup the Pi
-2. Flask web server setup
-3. Connect the Arduino to the web socket
-4. Turn the Pi into an Access Point Setup (Optional)
+1. [Setup the Pi](#basic-raspberry-pi-setup)
+2. [Flask web server setup](#flask-web-server-setup)
+3. [Connect the Arduino to the web socket](#connect-the-arduino-to-the-web-socket)
+4. [Turn the Pi into an Access Point Setup (Optional)](#access-pointp-setup)
 
 Things you will need
 * Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
@@ -243,3 +243,9 @@ Start the web server running
 * ```sudo python3 ~/www/gameconsole/webserver.py —prod```
 
 Now you should be able to connect to the Pi via WiFi. Navigate to http://game.console in the browser and you should see the website.
+
+
+## Footnotes
+
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
