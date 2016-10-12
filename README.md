@@ -2,9 +2,9 @@
 
 In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an [outreach project](#footnotes) for Exeter University. We needed to present live data streams on a large public display.
 
-We began with the following observations: Arduino's are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
+We began with the following observations: Arduinos are excellent for quick hardware hacks and HTML5 technologies are ideal for fast visualisation development as there are so many free libraries. This project provides a kind of black-box setup, where strings (JSON encoded data) outputted from the Arduino are piped (via a web socket) to the browser and replies fed back.
 
-## To make things simpler the tutorial is divide into the following section:
+## To make things simpler the tutorial is divided into the following sections:
 
 1. [Setup the Pi](#basic-raspberry-pi-setup)
 2. [Flask web server setup](#flask-web-server-setup)
@@ -13,7 +13,7 @@ We began with the following observations: Arduino's are excellent for quick hard
 5. [Turn the Pi into an Access Point Setup (Optional)](#access-point-setup)
 
 ## Things you will need
-* Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as its much quicker. Also the settings may require some tinkering with other wifi adapters.
+* Raspberry Pi (preferably v3) with monitor, keyboard and mouse. Older models of the Pi will work, but if you intend to use the Pi's browser to display a page, it is worth using the latest model as it's much quicker. Also the settings may require some tinkering with other wifi adapters.
 * An Arduino, any model should do, we used Nanos and Unos
 * USB cable to connect the Pi and the Arduino
 * Power supplies
@@ -27,13 +27,13 @@ The purpose of this code and the tutorial is to give you a framework / skill set
 
 
 # Basic Raspberry Pi Setup
-First of all install the latest version Raspbian (howto: https://www.raspberrypi.org/help/videos/) and connect it to the internet.
+First of all, install the latest version of Raspbian (howto: https://www.raspberrypi.org/help/videos/) and connect it to the internet.
 
-If you choose to use a different OS the please make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step, it has been done already for you.
+If you choose to use a different OS then please make sure the file system is expanded to use the full capacity of the SD Card. If you have used NOOBS then skip this step, it has already been done for you.
 * Open terminal and type “raspi-config”.
 * Choose the “expand Filesystem” option and reboot the Pi
 
-Next let make sure the system is up to date.
+Next let's make sure the system is up to date.
 * Launch the command line / terminal and run the following
 * ```sudo apt-get update```
 
@@ -53,7 +53,7 @@ Clone the project code from github and step into the directory
 Install all the library requirements
 * ```sudo pip3 install -r requirements.txt```
 
-That's it, now we can test the web server.
+That's it. Now we can test the web server.
 * ```sudo python3 webserver.py --prod```
 
 You should see something like this:
@@ -66,7 +66,7 @@ You should see something like this:
 (10072) wsgi starting up on http://0.0.0.0:80
 ```
 
-Now the server is up and running you can open the web browser, type ```localhost``` in the address bar and hit enter. You should see the webpage being served.
+Now the server is up and running you can open the web browser. Type ```localhost``` in the address bar and hit enter. You should see the webpage being served.
 
 
 # Connect the Arduino to the web socket
@@ -84,8 +84,8 @@ Now to setup the Arduino. If you don't already have the IDE installed on the Pi 
 * ```sudo apt-get install arduino```
 
 Open the IDE by either:
-1. Use the Raspberry Pi menu system > Programming > Arduino IDE
-2. Type ```arduino &``` in the terminal. The & is important, it tells the terminal to open in the background.
+1. Using the Raspberry Pi menu system > Programming > Arduino IDE
+2. Typing ```arduino &``` in the terminal. The & is important, it tells the terminal to open in the background.
 
 Connect the Arduino to the Pi via a USB cable and make sure you have the port and board type set correctly.
 
@@ -130,11 +130,11 @@ Now restart the serialmonitor.py
 
 Make sure the web server is still running and open the browser.
 
-Select 'pong' from the main menu and see what happens. You should be able to control the left paddle by moving your hand up and down front of the range sensor (approx 5 to 10cm). When the ball goes out of play the servo should twitch!
+Select 'pong' from the main menu and see what happens. You should be able to control the left paddle by moving your hand up and down in front of the range sensor (approx 5 to 10cm). When the ball goes out of play the servo should twitch!
 
 ## Next
 
-You may have noticed that there is another game, Snake. This game expects  to control the direction of the snake. Why not try making your own Arduino script which outputs
+You may have noticed that there is another game, Snake. This game expects to control the direction of the snake. Why not try making your own Arduino script which outputs
 
 * { "keystroke": 37 } for 'left'
 * { "keystroke": 38 } for 'up'
@@ -143,7 +143,7 @@ You may have noticed that there is another game, Snake. This game expects  to co
 
 
 # Access Point Setup
-In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available, as such push the processing to the browser i.e. using javascript to do the heavy lifting, is a good idea.
+In this section we will cover how to turn you Pi into an access point (adapted from: https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/). This will enable you to connect external machines to view the web page. This can be very helpful if your webpage is processor intensive. When using a Pi as a web server it is important to remember the limited resources available. Moving the processing to the browser, i.e. using javascript to do the heavy lifting, is a good idea.
 
 First, get your Pi connected to the internet using Ethernet. It will make your life much easier later. We need to use the Wifi for the access point.
 
@@ -240,7 +240,7 @@ Before you save, you can edit the following
 We can check if it's working by running
 # ```sudo /usr/sbin/hostapd /etc/hostapd/hostapd.conf```
 
-If it's all gone well thus far, you should be able to see to the network with SSID you chose in the list of available networks on any device nearby. However if you try connecting to it, you will see some output from the Pi, but it wont work as you might expect.
+If it's all gone well thus far, you should be able to see a network with the SSID you chose on any wifi device nearby. However if you try connecting to it, you will see some output from the Pi, but it won't work as you might expect.
 * Use Ctrl+C to stop it.
 
 We also need to tell hostapd where to look for the config file when it starts up on boot
