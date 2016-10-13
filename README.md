@@ -84,6 +84,7 @@ Now to setup the Arduino. If you don't already have the IDE installed on the Pi 
 * ```sudo apt-get install arduino```
 
 Open the IDE by either:
+
 1. Using the Raspberry Pi menu system > Programming > Arduino IDE
 2. Typing ```arduino &``` in the terminal. The & is important, it tells the terminal to open in the background.
 
