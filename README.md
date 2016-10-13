@@ -95,7 +95,7 @@ Open the file: ```arduino/testconnection/testconnection.ino``` in the Arduino ID
 Open the serial monitor to make sure it is outputting information periodically e.g. { test: 39 }.
 
 Close the serial monitor and run the web server
-* ```sudo ~/www/Arduino-Websocket-Webpage/webserver.py```
+* ```sudo ~/www/Arduino-Websocket-Webpage/webserver.py --prod```
 
 Open a new terminal window and run the serialmonitor.py script
 * ```sudo ~/www/Arduino-Serial-Websocket/serialmonitor.py```
