@@ -1,3 +1,8 @@
+
+[New version of this tutorial is available here](http://127.0.0.1:4000/2017/08/11/blog-websockets/)
+================================================
+
+
 # Displaying live data from an arduino in a web browser
 
 In this tutorial we show how a Raspberry Pi serving webpages can present live data streamed from a connected Arduino. Why? Well this project came about when I was designing an [outreach project](#footnotes) for Exeter University. We needed to present live data streams on a large public display.
